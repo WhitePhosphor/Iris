@@ -32,7 +32,6 @@ public class ServerBootSFG {
     public static boolean unsuportedversion = false;
     protected static boolean safeguardPassed;
     public static boolean passedserversoftware = true;
-    protected static int count;
     protected static byte severityLow;
     protected static byte severityMedium;
     protected static byte severityHigh;
@@ -44,7 +43,7 @@ public class ServerBootSFG {
         Plugin[] plugins = pluginManager.getPlugins();
 
         incompatibilities.clear();
-        incompatibilities.put("Multiverse-Core", false);
+ //     incompatibilities.put("Multiverse-Core", false); //why??
         incompatibilities.put("dynmap", false);
         incompatibilities.put("TerraformGenerator", false);
         incompatibilities.put("Stratos", false);
@@ -66,19 +65,19 @@ public class ServerBootSFG {
             }
         }
         // Legacy ServerInfo
-        String distro = Bukkit.getName().toLowerCase();
-        if (
-                !distro.contains("purpur") &&
-                        !distro.contains("paper") &&
-                        !distro.contains("spigot") &&
-                        !distro.contains("pufferfish") &&
-                        !distro.contains("bukkit")) {
-
-
-            passedserversoftware = false;
-            joiner.add("Server Software");
-            severityMedium++;
-        }
+//        String distro = Bukkit.getName().toLowerCase();
+//        if (
+//                !distro.contains("purpur") &&
+//                        !distro.contains("paper") &&
+//                        !distro.contains("spigot") &&
+//                        !distro.contains("pufferfish") &&
+//                       !distro.contains("bukkit")) {
+//
+//
+ //           passedserversoftware = false;
+//            joiner.add("Server Software");
+//            severityMedium++;
+//        } disable
 
 
         if (INMS.get() instanceof NMSBinding1X) {
@@ -87,17 +86,17 @@ public class ServerBootSFG {
             severityHigh++;
         }
 
-        if (!List.of(17, 21).contains(getJavaVersion())) {
-            isJDK17 = false;
-            joiner.add("Unsupported Java version");
-            severityMedium++;
-        }
+ //       if (!List.of(17, 21).contains(getJavaVersion())) {
+ //           isJDK17 = false;
+ //           joiner.add("Unsupported Java version");
+ //           severityMedium++;
+//      } disable
 
-        if (!isJDK()) {
-            isJRE = true;
-            joiner.add("Unsupported JDK");
-            severityMedium++;
-        }
+//        if (!isJDK()) {
+//            isJRE = true;
+//            joiner.add("Unsupported JDK");
+//            severityMedium++;
+//        }just disable it (evil smile
 
 //        if (!hasPrivileges()){
 //            hasPrivileges = false;
@@ -114,7 +113,6 @@ public class ServerBootSFG {
         allIncompatibilities = joiner.toString();
 
         safeguardPassed = (severityHigh == 0 && severityMedium == 0 && severityLow == 0);
-        count = severityHigh + severityMedium + severityLow;
         if (safeguardPassed) {
             stablemode = true;
             Iris.safeguard("Stable mode has been activated.");
@@ -162,8 +160,8 @@ public class ServerBootSFG {
         }
     }
 
-    private static boolean checkJavac(String path) {
-        return !path.isEmpty() && (new File(path, "javac").exists() || new File(path, "javac.exe").exists());
-    }
+//    private static boolean checkJavac(String path) {
+//        return !path.isEmpty() && (new File(path, "javac").exists() || new File(path, "javac.exe").exists());
+//    }
 
 }
